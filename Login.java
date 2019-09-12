@@ -12,7 +12,7 @@ public class Login{
         JTabbedPane tab=new JTabbedPane(); 
         tab.add("Sign In",Sin);
         tab.add("Create an Account",Sup);
-        tab.setBounds(50,50,290,400);  
+        tab.setBounds(0,40,390,490);  
         J.add(tab);
         J.setVisible(true);
     }

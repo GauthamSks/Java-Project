@@ -2,26 +2,29 @@ import java.awt.Color;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import java.io.*;
 
 public class Login{
     public Login(){
 
 
-        ImagePanel panel1 = new ImagePanel(new ImageIcon("img1*.jpg").getImage());
-        ImagePanel panel2 = new ImagePanel(new ImageIcon("img1*.jpg").getImage());
+        ImagePanel panel1 = new ImagePanel(new ImageIcon("img.jpg").getImage());
+        ImagePanel panel2 = new ImagePanel(new ImageIcon("img.jpg").getImage());
         JFrame J = new JFrame();
         Color o1 = new Color(255, 51, 51);
         J.setSize(390,530);
         J.setLayout(null);
         J.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         J.setLocationRelativeTo(null);
-        J.setContentPane(new JLabel(new ImageIcon("BG*.jpg")));
+        J.setContentPane(new JLabel(new ImageIcon("BG.jpg")));
         J.setTitle("Login");
         JPanel Sin = new JPanel(); //Sign in Panel
         JPanel Sup = new JPanel(); //Sign up Panel
@@ -84,8 +87,35 @@ public class Login{
         Lin1.setBackground(Color.GREEN);
         Sup.add(Lin1);
         tab.setBackground(Color.RED);
-       
         Sup.add(panel2);
+
+        Lin.addActionListener(new ActionListener(){
+        
+          @Override
+          public void actionPerformed(ActionEvent e) {
+            {
+              
+              if(DD.getSelectedItem() == "Student"){
+                try{
+                  File htmlFile = new File(this.getClass().getResource("student1.html").getFile());
+                  Desktop.getDesktop().browse(htmlFile.toURI());
+                  }
+                  catch(IOException ex){
+                    System.out.println(ex);
+                  }
+              }
+              else{
+                try{
+                  File htmlFile = new File(this.getClass().getResource("faculty1.html").getFile());
+                  Desktop.getDesktop().browse(htmlFile.toURI());
+                  }
+                  catch(IOException ex){
+                    System.out.println(ex);
+                  }
+              }
+            }
+          }
+        });
     } 
     public static void main(String[] args) {
         Login l = new Login();

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STUDENT</title>
+<style>
+body {font-family: Arial;}
+
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+
+.tab button {
+  background-color: #f44336;
+  float: left;
+  border: 0.9px;
+  outline: 1px;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.tab button:hover {
+  background-color:  #555555;;
+}
+
+.tab button.active {
+  background-color: #e7e7e7;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: green;
+  }
+
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;} 
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+</style>
+</head>
+<body>
+
+  <button class="button">STUDENT PORTAL</button>
+  <hr> 
+
+
+<div class="tab">
+  <button class="tablinks" onclick="opentab(event, 'Marks')">MARKS</button>
+  <button class="tablinks" onclick="opentab(event, 'Grades')">GRADES</button>
+  <button class="tablinks" onclick="opentab(event, 'Attendance')">ATTENDANCE</button>
+  <button class="tablinks" onclick="opentab(event, 'Course')">COURSE</button>
+  <button class="tablinks" onclick="opentab(event, 'Personal')">PERSONEL</button>
+  
+</div>
+
+
+
+<div id="Marks" class="tabcontent">
+  <h3>Marks of the student</h3>
+
+     <div class="dropdown">
+     <button onclick="myFunct()" class="dropbtn">SEMESTER</button>
+      <div id="myMarks" class="dropdown-content">
+         <a href="#S1">SEMESTER 1</a>
+         <a href="#S2">SEMESTER 2</a>
+         <a href="#S3">SEMESTER 3</a>
+      </div>
+      </div>
+
+     <script>
+
+     function myFunct() {
+     document.getElementById("myMarks").classList.toggle("show");
+     }
+
+      window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+       }
+      }
+    }
+  }
+    </script>
+
+    <br><br>
+    <hr>
+    <br><br>
+
+    <table>
+  <tr>
+    <th>SUBJECT</th>
+    <th>P1</th>
+    <th>P2</th>
+    <th>ENDSEM</th>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  
+</table>
+
+    </div>
+
+
+
+
+ <div id="Grades" class="tabcontent">
+  <h3>Grades of the student</h3>
+
+  <div class="dropdown">
+     <button onclick="myFuncti()" class="dropbtn">SEMESTER</button>
+      <div id="myGrades" class="dropdown-content">
+         <a href="#S1">SEMESTER 1</a>
+         <a href="#S2">SEMESTER 2</a>
+         <a href="#S3">SEMESTER 3</a>
+      </div>
+      </div>
+
+      <script>
+
+     function myFuncti() {
+     document.getElementById("myGrades").classList.toggle("show");
+     }
+
+      window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+       }
+      }
+    }
+  }
+    </script>
+
+    <br><br>
+    <hr>
+    <br><br>
+
+    <table>
+  <tr>
+    <th>SUBJECT</th>
+    <th>P1</th>
+    <th>P2</th>
+    <th>ENDSEM</th>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  
+</table>
+
+
+  </div>
+
+  
+
+<div id="Attendance" class="tabcontent">
+  <h3>Attendance</h3>
+
+    <div class="dropdown">
+     <button onclick="my()" class="dropbtn">SEMESTER</button>
+      <div id="myAttendance" class="dropdown-content">
+         <a href="#S1">SEMESTER 1</a>
+         <a href="#S2">SEMESTER 2</a>
+         <a href="#S3">SEMESTER 3</a>
+      </div>
+      </div>
+
+     <script>
+
+     function my() {
+    document.getElementById("myAttendance").classList.toggle("show");
+     }
+
+    window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+  </script>
+
+  <br><br>
+  <hr>
+  <br><br>
+
+  <table>
+  <tr>
+    <th>SUBJECT</th>
+    <th>NO.OF CLASSES</th>
+    <th>PERCENTILE</th>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  
+</table>
+
+</div>
+
+
+
+<div id="Course" class="tabcontent">
+  <h3>Courses registered by the student</h3>
+
+    <div class="dropdown">
+     <button onclick="myFunctio()" class="dropbtn">SEMESTER</button>
+      <div id="myCourse" class="dropdown-content">
+         <a href="#S1">SEMESTER 1</a>
+         <a href="#S2">SEMESTER 2</a>
+         <a href="#S3">SEMESTER 3</a>
+      </dIv>
+      </div>
+
+       <div class="dropdown">
+     <button onclick="myFun()" class="dropbtn">SUBJECTS</button>
+      <div id="myCourse" class="dropdown-content">
+         <a href="#CS">CORE</a>
+         <a href="#MATH">MATH</a>
+         <a href="#LAB">LAB</a>
+      </div>
+      </div>
+    
+     <button class="button">REGISTRATION</button>
+
+
+
+   <script>
+
+     function myFunctio() {
+     document.getElementById("myCourse").classList.toggle("show");
+    }
+
+     window.onclick = function(event) {
+       if (!event.target.matches('.dropbtn')) {
+       var dropdowns = document.getElementsByClassName("dropdown-content");
+       var i;
+       for (i = 0; i < dropdowns.length; i++) {
+       var openDropdown = dropdowns[i];
+       if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+     </script>
+
+     <script>
+
+        function myFun() {
+     document.getElementById("myCourse").classList.toggle("show");
+    }
+
+     window.onclick = function(event) {
+       if (!event.target.matches('.dropbtn')) {
+       var dropdowns = document.getElementsByClassName("dropdown-content");
+       var i;
+       for (i = 0; i < dropdowns.length; i++) {
+       var openDropdown = dropdowns[i];
+       if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+       
+
+     </script>
+
+     <br><br>
+     <hr>
+     <br><br>
+
+     <table>
+  <tr>
+    <th>COURSES</th>
+    <th>AVAILABLE</th>
+    <th>REGISTERED COURSES</th>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  
+</table>
+
+</div>
+
+
+
+<div id="Personal" class="tabcontent">
+  <h3>Personel information</h3>
+
+      <div class="dropdown">
+     <button onclick="myF()" class="dropbtn">EVENTS</button>
+      <div id="myPersonal" class="dropdown-content">
+         <a href="#S1">SEMESTER 1</a>
+         <a href="#S2">SEMESTER 2</a>
+         <a href="#S3">SEMESTER 3</a>
+      </dIv>
+      </div>
+
+      <script>
+
+     function myF() {
+     document.getElementById("myPersonal").classList.toggle("show");
+    }
+
+     window.onclick = function(event) {
+       if (!event.target.matches('.dropbtn')) {
+       var dropdowns = document.getElementsByClassName("dropdown-content");
+       var i;
+       for (i = 0; i < dropdowns.length; i++) {
+       var openDropdown = dropdowns[i];
+       if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+     </script>
+
+
+</div>
+
+<script>
+function opentab(evt, Name) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].Name = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(Name).style.display = "block";
+  evt.currentTarget.Name += " active";
+}
+</script>
+   
+</body>
+</html> 

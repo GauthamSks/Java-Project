@@ -70,6 +70,12 @@ public class Login{
         JComboBox DD1 = new JComboBox<>(D);
         DD1.setBounds(135,50,100,20);
         Sup.add(DD1);
+        JLabel Name = new JLabel("First Name");
+        Name.setBounds(10,190,100,50);
+        Sup.add(Name);
+        JTextField Nf = new JTextField();
+        Nf.setBounds(10,230,250,20);
+        Sup.add(Nf);
         JLabel UID1 = new JLabel("User Name");
         UID1.setBounds(10,100,100,10);
         Sup.add(UID1);
@@ -83,7 +89,7 @@ public class Login{
         pf1.setBounds(10,172,250,20);
         Sup.add(pf1);
         JButton Lin1 = new JButton("Sign Up");
-        Lin1.setBounds(10,205,100,50);
+        Lin1.setBounds(10,265,100,50);
         Lin1.setBackground(Color.GREEN);
         Sup.add(Lin1);
         tab.setBackground(Color.RED);

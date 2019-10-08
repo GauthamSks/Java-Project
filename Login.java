@@ -112,11 +112,11 @@ public class Login{
               }
               else{
                 try{
-                  File htmlFile = new File(this.getClass().getResource("faculty1.html").getFile());
-                  Desktop.getDesktop().browse(htmlFile.toURI());
+                    Faculty f = new Faculty();
+                    J.setVisible(false);
                   }
-                  catch(IOException ex){
-                    System.out.println(ex);
+                  catch(Exception e1){
+                    System.out.println(e1);
                   }
               }
             }

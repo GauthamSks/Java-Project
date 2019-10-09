@@ -151,7 +151,8 @@ public class Login{
                 preparedStmt.setString (7,null);
                 preparedStmt.setString (8,Upw);
                 preparedStmt.setString (9,"S");
-                preparedStmt.execute(); 
+                preparedStmt.execute();
+                JOptionPane.showMessageDialog(null, "Successful Sign-up"); 
             }
             catch(Exception e1){ System.out.println(e1);}    
           }
@@ -174,6 +175,7 @@ public class Login{
               preparedStmt.setString (8,Upw);
               preparedStmt.setString (9,"F");
               preparedStmt.execute();
+              JOptionPane.showMessageDialog(null, "Successful Sign-up"); 
           }
           catch(Exception e1){ System.out.println(e1);} 
         }         

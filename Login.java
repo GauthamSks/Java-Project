@@ -96,33 +96,70 @@ public class Login{
         tab.setBackground(Color.RED);
         Sup.add(panel2);
 
+        // SignIn button Link to MySQL
         Lin.addActionListener(new ActionListener(){
         
           @Override
           public void actionPerformed(ActionEvent e) {
             {
+              String UID =  UIDIn.getText();
+              String Upw  =  String.valueOf(pf.getPassword());
               
-              if(DD.getSelectedItem() == "Student"){
+              if(UIDIn.getText().isEmpty() || pf.getPassword().length ==0 ){
+                JOptionPane.showMessageDialog(null, "Please fill all the boxes");
+              }
+              else if(DD.getSelectedItem() == "Student"){
                 try{
-                  File htmlFile = new File(this.getClass().getResource("student1.html").getFile());
-                  Desktop.getDesktop().browse(htmlFile.toURI());
+                  // Class.forName("com.mysql.cj.jdbc.Driver");
+                  Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/Students","Beta","1234"); //Connecting MySQL to java via JDBC API.
+                  Statement stmt=con.createStatement();//Create a statement object to perform a query.
+                  
+                  // Method to Insert
+                  String query1 = "SELECT * from users WHERE ID = ? && Password = ? && Field = 'S'";
+                  PreparedStatement preparedStmt = con.prepareStatement(query1);
+                  preparedStmt.setString (1,UID);
+                  preparedStmt.setString (2,Upw);
+                  ResultSet resultSet = preparedStmt.executeQuery();
+                  if(resultSet.next()) {
+                    JOptionPane.showMessageDialog(null, "Successful Login");
+                    Student f = new Student();
+                    J.setVisible(false); 
                   }
-                  catch(IOException ex){
-                    System.out.println(ex);
-                  }
+                  else
+                      JOptionPane.showMessageDialog(null, "Invalid Credentials");
+                  
+              }
+              catch(Exception e1){ System.out.println(e1);} 
+                
               }
               else{
-                try{
-                    Faculty f = new Faculty();
-                    J.setVisible(false);
-                  }
-                  catch(Exception e1){
-                    System.out.println(e1);
+                  try{
+                    // Class.forName("com.mysql.cj.jdbc.Driver");
+                    Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/Students","Beta","1234"); //Connecting MySQL to java via JDBC API.
+                    Statement stmt=con.createStatement();//Create a statement object to perform a query.
+                    
+                    // Method to Insert
+                    String query1 = "SELECT * from users WHERE ID = ? and Password = ? && Field = 'F'";
+                    PreparedStatement preparedStmt = con.prepareStatement(query1);
+                    preparedStmt.setString (1,UID);
+                    preparedStmt.setString (2,Upw);
+                    ResultSet resultSet = preparedStmt.executeQuery();
+                    if(resultSet.next()) {
+                      JOptionPane.showMessageDialog(null, "Successful Login");
+                      Faculty f = new Faculty();
+                      J.setVisible(false); 
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, "Invalid Credentials");
+                    
+                }
+                catch(Exception e1){ System.out.println(e1);} 
+
+                    
                   }
               }
             }
-          }
-        });
+          });
 
         // Sign-up button Link to MySQl
         
@@ -133,30 +170,32 @@ public class Login{
                String Uname =  UIDIn1.getText();
                String Upw  =  String.valueOf(pf1.getPassword());
                String UID = Nf.getText();
-              if(DD1.getSelectedItem() == "Student"){
-               try{
-                // Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/Students","Beta","1234"); //Connecting MySQL to java via JDBC API.
-                Statement stmt=con.createStatement();//Create a statement object to perform a query.
-                
-                // Method to Insert
-                String query1 = " insert into users(Name,ID,Subject,P1,P2,P3,Grade,Password,Field)"+" values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                PreparedStatement preparedStmt = con.prepareStatement(query1);
-                preparedStmt.setString (1,Uname);
-                preparedStmt.setString (2,UID);
-                preparedStmt.setString (3,null);
-                preparedStmt.setInt(4,0);
-                preparedStmt.setInt(5,0);
-                preparedStmt.setInt(6,0);
-                preparedStmt.setString (7,null);
-                preparedStmt.setString (8,Upw);
-                preparedStmt.setString (9,"S");
-                preparedStmt.execute();
-                JOptionPane.showMessageDialog(null, "Successful Sign-up"); 
+            if(UIDIn1.getText().isEmpty() || pf1.getPassword().length ==0 || Nf.getText().isEmpty() )
+                  JOptionPane.showMessageDialog(null, "Please fill all the boxes");
+            else if(DD1.getSelectedItem() == "Student"){
+                try{
+                  // Class.forName("com.mysql.cj.jdbc.Driver");
+                  Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/Students","Beta","1234"); //Connecting MySQL to java via JDBC API.
+                  Statement stmt=con.createStatement();//Create a statement object to perform a query.
+                  
+                  // Method to Insert
+                  String query1 = " insert into users(Name,ID,Subject,P1,P2,P3,Grade,Password,Field)"+" values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                  PreparedStatement preparedStmt = con.prepareStatement(query1);
+                  preparedStmt.setString (1,Uname);
+                  preparedStmt.setString (2,UID);
+                  preparedStmt.setString (3,null);
+                  preparedStmt.setInt(4,0);
+                  preparedStmt.setInt(5,0);
+                  preparedStmt.setInt(6,0);
+                  preparedStmt.setString (7,null);
+                  preparedStmt.setString (8,Upw);
+                  preparedStmt.setString (9,"S");
+                  preparedStmt.execute();
+                  JOptionPane.showMessageDialog(null, "Successful Sign-up"); 
+              }
+              catch(Exception e1){ System.out.println(e1);}
             }
-            catch(Exception e1){ System.out.println(e1);}    
-          }
-          else if(DD1.getSelectedItem() == "Faculty"){
+          else{
             try{
               // Class.forName("com.mysql.cj.jdbc.Driver");
               Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/Students","Beta","1234"); //Connecting MySQL to java via JDBC API.

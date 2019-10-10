@@ -30,9 +30,9 @@ public class Student{
         UIManager.put("TabbedPane.selected", o1);
         UIManager.put("TabbedPane.contentOpaque", true);
         JTabbedPane tab=new JTabbedPane(); 
-        tab.add("MARKS",M);
-        tab.add("GRADE",G);
-        tab.add("ATTENDANCE",T);
+        tab.add("GRADES",M);
+        tab.add("PERFORMANCE ANALYSER",G);
+        tab.add("PERSONAL",T);
         tab.setBounds(60,140,1000,500);  
         J.add(tab);
         J.getContentPane().setBackground(o1);

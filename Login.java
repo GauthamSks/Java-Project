@@ -177,21 +177,25 @@ public class Login{
                   // Class.forName("com.mysql.cj.jdbc.Driver");
                   Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/Students","Beta","1234"); //Connecting MySQL to java via JDBC API.
                   Statement stmt=con.createStatement();//Create a statement object to perform a query.
-                  
+                  String[] j = {"Maths", "DS", "Java"};
                   // Method to Insert
-                  String query1 = " insert into users(Name,ID,Subject,P1,P2,P3,Grade,Password,Field)"+" values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                  PreparedStatement preparedStmt = con.prepareStatement(query1);
-                  preparedStmt.setString (1,Uname);
-                  preparedStmt.setString (2,UID);
-                  preparedStmt.setString (3,null);
-                  preparedStmt.setInt(4,0);
-                  preparedStmt.setInt(5,0);
-                  preparedStmt.setInt(6,0);
-                  preparedStmt.setString (7,null);
-                  preparedStmt.setString (8,Upw);
-                  preparedStmt.setString (9,"S");
-                  preparedStmt.execute();
-                  JOptionPane.showMessageDialog(null, "Successful Sign-up"); 
+                  for(int i=0;i<3;i++){
+                    String query1 = " insert into users(Name,ID,Subject,P1,P2,P3,Grade,Password,Field)"+" values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    PreparedStatement preparedStmt = con.prepareStatement(query1);
+                    preparedStmt.setString (1,Uname);
+                    preparedStmt.setString (2,UID);
+                    preparedStmt.setString (3,j[i]);
+                    preparedStmt.setInt(4,0);
+                    preparedStmt.setInt(5,0);
+                    preparedStmt.setInt(6,0);
+                    preparedStmt.setString (7,null);
+                    preparedStmt.setString (8,Upw);
+                    preparedStmt.setString (9,"S");
+                    preparedStmt.execute();
+                    
+                  }
+                  JOptionPane.showMessageDialog(null, "Successful Sign-up");
+                   
               }
               catch(Exception e1){ System.out.println(e1);}
             }

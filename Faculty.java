@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.io.*;
+import java.sql.*;
 
 public class Faculty {
     public Faculty() {
@@ -104,6 +105,86 @@ public class Faculty {
         tab.setBackground(Color.WHITE);
 
         // Personal Panel
+        Up.addActionListener(new ActionListener(){
+        
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              {
+                String name = AIn.getText();
+                String rn = BIn.getText();
+                String m = CIn.getText();
+                if(AIn.getText().isEmpty() || BIn.getText().isEmpty() || CIn.getText().isEmpty())
+                    JOptionPane.showMessageDialog(null, "Please fill all the boxes");
+                else if(SubD.getSelectedItem() == "Maths"){
+                    try{
+                        // Class.forName("com.mysql.cj.jdbc.Driver");
+                        Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/Students","Beta","1234"); //Connecting MySQL to java via JDBC API.
+                        Statement stmt=con.createStatement();//Create a statement object to perform a query.
+                        String query1;
+                        if(DD.getSelectedItem()=="P1")
+                            query1 = "UPDATE users SET Subject = ?, P1 = ? WHERE ID = ? && Subject = 'Maths';";
+                        else if(DD.getSelectedItem()=="P2")
+                            query1 = "UPDATE users SET Subject = ?, P2 = ? WHERE ID = ? && Subject = 'Maths';";
+                        else
+                            query1 = "UPDATE users SET Subject = ?, P3 = ? WHERE ID = ? && Subject = 'Maths';";
+                        PreparedStatement preparedStmt = con.prepareStatement(query1);
+                        preparedStmt.setString (1,SubD.getSelectedItem().toString());
+                        preparedStmt.setString (2,m);
+                        preparedStmt.setString (3,rn);
+                        preparedStmt.executeUpdate();
+                        
+                        JOptionPane.showMessageDialog(null, "Successful Update"); 
+                    }
+                    catch(Exception e1){ System.out.println(e1);}
+                }
+                else if(SubD.getSelectedItem()== "DS"){
+                    try{
+                        // Class.forName("com.mysql.cj.jdbc.Driver");
+                        Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/Students","Beta","1234"); //Connecting MySQL to java via JDBC API.
+                        Statement stmt=con.createStatement();//Create a statement object to perform a query.
+                        String query1;
+                        if(DD.getSelectedItem()=="P1")
+                            query1 = "UPDATE users SET Subject = ?, P1 = ? WHERE ID = ? && Subject = 'DS';";
+                        else if(DD.getSelectedItem()=="P2")
+                            query1 = "UPDATE users SET Subject = ?, P2 = ? WHERE ID = ? && Subject = 'DS';";
+                        else
+                            query1 = "UPDATE users SET Subject = ?, P3 = ? WHERE ID = ? && Subject = 'DS';";
+                        PreparedStatement preparedStmt = con.prepareStatement(query1);
+                        preparedStmt.setString (1,SubD.getSelectedItem().toString());
+                        preparedStmt.setString (2,m);
+                        preparedStmt.setString (3,rn);
+                        preparedStmt.executeUpdate();
+                        
+                        JOptionPane.showMessageDialog(null, "Successful Update"); 
+                    }
+                    catch(Exception e1){ System.out.println(e1);}
+                    
+                }
+                else{
+                    try{
+                        // Class.forName("com.mysql.cj.jdbc.Driver");
+                        Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/Students","Beta","1234"); //Connecting MySQL to java via JDBC API.
+                        Statement stmt=con.createStatement();//Create a statement object to perform a query.
+                        String query1;
+                        if(DD.getSelectedItem()=="P1")
+                            query1 = "UPDATE users SET Subject = ?, P1 = ? WHERE ID = ? && Subject = 'Java';";
+                        else if(DD.getSelectedItem()=="P2")
+                            query1 = "UPDATE users SET Subject = ?, P2 = ? WHERE ID = ? && Subject = 'Java';";
+                        else
+                            query1 = "UPDATE users SET Subject = ?, P3 = ? WHERE ID = ? && Subject = 'Java';";
+                        PreparedStatement preparedStmt = con.prepareStatement(query1);
+                        preparedStmt.setString (1,SubD.getSelectedItem().toString());
+                        preparedStmt.setString (2,m);
+                        preparedStmt.setString (3,rn);
+                        preparedStmt.executeUpdate();
+                        
+                        JOptionPane.showMessageDialog(null, "Successful Update"); 
+                    }
+                    catch(Exception e1){ System.out.println(e1);}
+                }
+                }
+              }
+            });
 
     }
 }

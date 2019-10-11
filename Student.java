@@ -45,6 +45,7 @@ public class Student{
         //Marks Panel Design
         
         M.setLayout(null);
+        M.add(panel1);
         tab.setBackground(Color.WHITE);
         
             
@@ -52,13 +53,14 @@ public class Student{
         // Grade panel
 
         G.setLayout(null);
+        G.add(panel2);
         tab.setBackground(Color.WHITE);
        
         
         //Attendance Panel
         
         T.setLayout(null);
-        
+        T.add(panel3);
         tab.setBackground(Color.WHITE);
       
    }

@@ -121,6 +121,19 @@ public class Login{
                   preparedStmt.setString (2,Upw);
                   ResultSet resultSet = preparedStmt.executeQuery();
                   if(resultSet.next()) {
+                    int[] a = new int[6];
+                    String[] q2={"SELECT * from users WHERE ID = ? and Subject = 'Maths'",
+                                 "SELECT * from users WHERE ID = ? and Subject = 'DS'",
+                                 "SELECT * from users WHERE ID = ? and Subject = 'Java'"};
+                      for(int i=0;i<q2.length;i++){
+                        PreparedStatement preparedStmt1 = con.prepareStatement(q2[i]);
+                        preparedStmt1.setString (1,UID);
+                        ResultSet rs = preparedStmt1.executeQuery();
+                        if(rs.next()){
+                          for(int k=4;k<7;k++)
+                            System.out.println(rs.getInt(k));
+                        }
+                      }
                     JOptionPane.showMessageDialog(null, "Successful Login");
                     Student f = new Student();
                     J.setVisible(false); 
@@ -185,9 +198,9 @@ public class Login{
                     preparedStmt.setString (1,Uname);
                     preparedStmt.setString (2,UID);
                     preparedStmt.setString (3,j[i]);
-                    preparedStmt.setInt(4,0);
-                    preparedStmt.setInt(5,0);
-                    preparedStmt.setInt(6,0);
+                    preparedStmt.setInt(4,-1);
+                    preparedStmt.setInt(5,-1);
+                    preparedStmt.setInt(6,-1);
                     preparedStmt.setString (7,null);
                     preparedStmt.setString (8,Upw);
                     preparedStmt.setString (9,"S");

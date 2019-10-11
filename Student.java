@@ -11,10 +11,32 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.io.*;
+import java.sql.*;
 
 public class Student{
-    public Student(){
-
+    public Student(String ID){
+        
+        int[] a = new int[9];
+        int idx=0;
+        try{
+        String[] q2={"SELECT * from users WHERE ID = ? and Subject = 'Maths'",
+                     "SELECT * from users WHERE ID = ? and Subject = 'DS'",
+                     "SELECT * from users WHERE ID = ? and Subject = 'Java'"};
+        Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/Students","Beta","1234");
+        Statement stmt=con.createStatement();
+          for(int i=0;i<q2.length;i++){
+            PreparedStatement preparedStmt1 = con.prepareStatement(q2[i]);
+            preparedStmt1.setString (1,ID);
+            ResultSet rs = preparedStmt1.executeQuery();
+            if(rs.next()){
+              for(int k=4;k<7;k++)
+                {a[idx]=rs.getInt(k);
+                idx=idx+1;
+                }
+            }
+          }
+        }
+        catch(Exception e){System.out.println(e);}
 
         JFrame J = new JFrame();
         Color o1 = new Color(3, 165, 252);
@@ -62,14 +84,12 @@ public class Student{
         T.setLayout(null);
         T.add(panel3);
         tab.setBackground(Color.WHITE);
+
+        
+    for(int i=0;i<9;i++)
+        System.out.println(a[i]);  
       
    }
-
-       
-    public static void main(String[] args) {
-        Student S = new Student();
-        
-    }
 }
 
 

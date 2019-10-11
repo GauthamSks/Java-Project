@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.sql.*;
 import java.io.*;
+import java.util.*;
 
 public class Login{
     public Login(){
@@ -121,21 +122,8 @@ public class Login{
                   preparedStmt.setString (2,Upw);
                   ResultSet resultSet = preparedStmt.executeQuery();
                   if(resultSet.next()) {
-                    int[] a = new int[6];
-                    String[] q2={"SELECT * from users WHERE ID = ? and Subject = 'Maths'",
-                                 "SELECT * from users WHERE ID = ? and Subject = 'DS'",
-                                 "SELECT * from users WHERE ID = ? and Subject = 'Java'"};
-                      for(int i=0;i<q2.length;i++){
-                        PreparedStatement preparedStmt1 = con.prepareStatement(q2[i]);
-                        preparedStmt1.setString (1,UID);
-                        ResultSet rs = preparedStmt1.executeQuery();
-                        if(rs.next()){
-                          for(int k=4;k<7;k++)
-                            System.out.println(rs.getInt(k));
-                        }
-                      }
                     JOptionPane.showMessageDialog(null, "Successful Login");
-                    Student f = new Student();
+                    Student f = new Student(UID);
                     J.setVisible(false); 
                   }
                   else

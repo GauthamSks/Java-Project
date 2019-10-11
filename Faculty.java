@@ -14,7 +14,7 @@ import java.io.*;
 import java.sql.*;
 
 public class Faculty {
-    public Faculty() {
+    public Faculty(String ID) {
 
         JFrame J = new JFrame();
         Color o1 = new Color(3, 165, 252);

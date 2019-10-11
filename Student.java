@@ -7,9 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.io.*;
 import java.sql.*;
 
@@ -66,8 +63,34 @@ public class Student{
 
         //Marks Panel Design
         
-        M.setLayout(null);
+        String[] columns = new String[] {
+            "Id", "Name", "Hourly Rate", "Part Time"
+        };
+        JLabel c = new JLabel("Course");
+        JLabel p1 = new JLabel("P1");
+        JLabel p2 = new JLabel("P2");
+        JLabel p3 = new JLabel("End_SEM");
+        //actual data for the table in a 2d array
+        Object[][] data = new Object[][] {
+            {"Maths",a[0],a[1],a[2] },
+            {"Ds",a[3],a[4],a[5]},
+            {"Java",a[6],a[7],a[8] },
+        };
+        //create table with data
+        JTable table = new JTable(data, columns);
+        c.setBounds(195,80,50,10);
+        M.add(c);
+        p1.setBounds(340,80,50,10);
+        M.add(p1);
+        p2.setBounds(470,80,50,10);
+        M.add(p2);
+        p3.setBounds(575,80,80,10);
+        M.add(p3);
+        table.setBounds(165,100,500,48);
+        table.setBackground(o1);
+        M.add(table);  
         M.add(panel1);
+        M.setLayout(null);
         tab.setBackground(Color.WHITE);
         
             
@@ -87,8 +110,7 @@ public class Student{
 
         
     for(int i=0;i<9;i++)
-        System.out.println(a[i]);  
-      
+        System.out.println(a[i]);      
    }
 }
 

@@ -147,7 +147,7 @@ public class Login{
                     ResultSet resultSet = preparedStmt.executeQuery();
                     if(resultSet.next()) {
                       JOptionPane.showMessageDialog(null, "Successful Login");
-                      Faculty f = new Faculty();
+                      Faculty f = new Faculty(UID);
                       J.setVisible(false); 
                     }
                     else

@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.sql.*;
 import java.io.*;
+import java.util.*;
 
 public class Login{
     public Login(){
@@ -122,7 +123,7 @@ public class Login{
                   ResultSet resultSet = preparedStmt.executeQuery();
                   if(resultSet.next()) {
                     JOptionPane.showMessageDialog(null, "Successful Login");
-                    Student f = new Student();
+                    Student f = new Student(UID);
                     J.setVisible(false); 
                   }
                   else
@@ -146,7 +147,7 @@ public class Login{
                     ResultSet resultSet = preparedStmt.executeQuery();
                     if(resultSet.next()) {
                       JOptionPane.showMessageDialog(null, "Successful Login");
-                      Faculty f = new Faculty();
+                      Faculty f = new Faculty(UID);
                       J.setVisible(false); 
                     }
                     else
@@ -185,9 +186,9 @@ public class Login{
                     preparedStmt.setString (1,Uname);
                     preparedStmt.setString (2,UID);
                     preparedStmt.setString (3,j[i]);
-                    preparedStmt.setInt(4,0);
-                    preparedStmt.setInt(5,0);
-                    preparedStmt.setInt(6,0);
+                    preparedStmt.setInt(4,-1);
+                    preparedStmt.setInt(5,-1);
+                    preparedStmt.setInt(6,-1);
                     preparedStmt.setString (7,null);
                     preparedStmt.setString (8,Upw);
                     preparedStmt.setString (9,"S");

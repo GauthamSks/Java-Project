@@ -7,22 +7,41 @@ import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.io.*;
+import java.sql.*;
 
 public class Student{
-    public Student(){
-
+    public Student(String ID){
+        
+        int[] a = new int[9];
+        int idx=0;
+        try{
+        String[] q2={"SELECT * from users WHERE ID = ? and Subject = 'Maths'",
+                     "SELECT * from users WHERE ID = ? and Subject = 'DS'",
+                     "SELECT * from users WHERE ID = ? and Subject = 'Java'"};
+        Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/Students","Beta","1234");
+        Statement stmt=con.createStatement();
+          for(int i=0;i<q2.length;i++){
+            PreparedStatement preparedStmt1 = con.prepareStatement(q2[i]);
+            preparedStmt1.setString (1,ID);
+            ResultSet rs = preparedStmt1.executeQuery();
+            if(rs.next()){
+              for(int k=4;k<7;k++)
+                {a[idx]=rs.getInt(k);
+                idx=idx+1;
+                }
+            }
+          }
+        }
+        catch(Exception e){System.out.println(e);}
 
         JFrame J = new JFrame();
-        Color o1 = new Color(255, 51, 51);
+        Color o1 = new Color(3, 165, 252);
         J.setSize(900,600);
         J.setLayout(null);
         J.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         J.setLocationRelativeTo(null);
-        J.setContentPane(new JLabel(new ImageIcon("BG.jpg")));
+        J.setContentPane(new JLabel(new ImageIcon("FBG.jpg")));
         J.setTitle("Student");
         JPanel M = new JPanel(); //Marks Panel
         JPanel G = new JPanel(); //Grade Panel
@@ -30,103 +49,69 @@ public class Student{
         UIManager.put("TabbedPane.selected", o1);
         UIManager.put("TabbedPane.contentOpaque", true);
         JTabbedPane tab=new JTabbedPane(); 
-        tab.add("MARKS",M);
-        tab.add("GRADE",G);
-        tab.add("ATTENDANCE",T);
+        tab.add("GRADES",M);
+        tab.add("PERFORMANCE ANALYSER",G);
+        tab.add("PERSONAL",T);
         tab.setBounds(60,140,1000,500);  
         J.add(tab);
         J.getContentPane().setBackground(o1);
         J.setVisible(true);
+        ImagePanel panel1 = new ImagePanel(new ImageIcon("FBG5.jpg").getImage());
+        ImagePanel panel2 = new ImagePanel(new ImageIcon("FBG5.jpg").getImage());
+        ImagePanel panel3 = new ImagePanel(new ImageIcon("FBG5.jpg").getImage());
+        
 
         //Marks Panel Design
         
+        String[] columns = new String[] {
+            "Id", "Name", "Hourly Rate", "Part Time"
+        };
+        JLabel c = new JLabel("Course");
+        JLabel p1 = new JLabel("P1");
+        JLabel p2 = new JLabel("P2");
+        JLabel p3 = new JLabel("End_SEM");
+        //actual data for the table in a 2d array
+        Object[][] data = new Object[][] {
+            {"Maths",a[0],a[1],a[2] },
+            {"Ds",a[3],a[4],a[5]},
+            {"Java",a[6],a[7],a[8] },
+        };
+        //create table with data
+        JTable table = new JTable(data, columns);
+        c.setBounds(195,80,50,10);
+        M.add(c);
+        p1.setBounds(340,80,50,10);
+        M.add(p1);
+        p2.setBounds(470,80,50,10);
+        M.add(p2);
+        p3.setBounds(575,80,80,10);
+        M.add(p3);
+        table.setBounds(165,100,500,48);
+        table.setBackground(o1);
+        M.add(table);  
+        M.add(panel1);
         M.setLayout(null);
-        String[] D = {"P1","P2","END SEM"};
-        JComboBox DD = new JComboBox<>(D);
-        DD.setBounds(135,50,100,20);
-        M.add(DD);
-        JLabel A = new JLabel("MATH");
-        A.setBounds(10,100,100,10);
-        M.add(A);
-        JTextField AIn = new JTextField();
-        AIn.setBounds(10,120,250,20);
-        M.add(AIn);
-        JLabel B = new JLabel("CORE");
-        B.setBounds(10,155,100,10);
-        M.add(B);
-        JTextField BIn = new JTextField();
-        BIn.setBounds(10,172,250,20);
-        M.add(BIn);
-        JLabel C = new JLabel("LAB");
-        C.setBounds(10,195,100,10);
-        M.add(C);
-        JTextField CIn = new JTextField();
-        CIn.setBounds(10,205,250,20);
-        M.add(CIn);
-        tab.setBackground(Color.GREEN);
+        tab.setBackground(Color.WHITE);
         
             
 
         // Grade panel
 
         G.setLayout(null);
-        JComboBox DD1 = new JComboBox<>(D);
-        DD1.setBounds(135,50,100,20);
-        G.add(DD1);
-        JLabel X = new JLabel("MATH");
-        X.setBounds(10,100,100,10);
-        G.add(X);
-        JTextField Xx = new JTextField();
-        Xx.setBounds(10,120,250,20);
-        G.add(Xx);
-        JLabel Y = new JLabel("CORE");
-        Y.setBounds(10,150,100,10);
-        G.add(Y);
-        JTextField Yy = new JTextField();
-        Yy.setBounds(10,170,250,20);
-        G.add(Yy);
-        JLabel Z = new JLabel("LAB");
-        Z.setBounds(10,195,100,10);
-        G.add(Z);
-        JTextField Zz = new JTextField();
-        Zz.setBounds(10,205,250,20);
-        G.add(Zz);
-        tab.setBackground(Color.RED);
+        G.add(panel2);
+        tab.setBackground(Color.WHITE);
        
         
         //Attendance Panel
         
         T.setLayout(null);
-        JComboBox DD2 = new JComboBox<>(D);
-        DD2.setBounds(135,50,100,20);
-        T.add(DD2);
-        JLabel P = new JLabel("MATH");
-        P.setBounds(10,100,100,10);
-        T.add(P);
-        JTextField PIn = new JTextField();
-        PIn.setBounds(10,120,250,20);
-        T.add(PIn);
-        JLabel Q = new JLabel("CORE");
-        Q.setBounds(10,140,100,10);
-        T.add(Q);
-        JTextField QIn = new JTextField();
-        QIn.setBounds(10,160,250,20);
-        T.add(QIn);
-        JLabel R = new JLabel("LAB");
-        R.setBounds(10,185,100,10);
-        T.add(R);
-        JTextField RIn = new JTextField();
-        RIn.setBounds(10,205,250,20);
-        T.add(RIn);
-        tab.setBackground(Color.GREEN);
-      
-   }
+        T.add(panel3);
+        tab.setBackground(Color.WHITE);
 
-       
-    public static void main(String[] args) {
-        Student S = new Student();
         
-    }
+    for(int i=0;i<9;i++)
+        System.out.println(a[i]);      
+   }
 }
 
 

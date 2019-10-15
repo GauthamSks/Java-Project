@@ -40,6 +40,7 @@ public class Faculty {
 
         ImagePanel panel1 = new ImagePanel(new ImageIcon("FBG5.jpg").getImage());
         ImagePanel panel2 = new ImagePanel(new ImageIcon("FBG5.jpg").getImage());
+        ImagePanel panel3 = new ImagePanel(new ImageIcon("FBG5.jpg").getImage());
 
         // Marks Panel Design
 
@@ -104,7 +105,7 @@ public class Faculty {
         A.add(panel2);
         tab.setBackground(Color.WHITE);
 
-        // Personal Panel
+        // Marks update Panel setup
         Up.addActionListener(new ActionListener(){
         
             @Override
@@ -185,6 +186,41 @@ public class Faculty {
                 }
               }
             });
-
+    
+    // Personal panel
+    //Personal Panel
+    try{
+        // Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/Students","Beta","1234"); //Connecting MySQL to java via JDBC API.
+        Statement stmt=con.createStatement();//Create a statement object to perform a query.
+        
+        // Method to Insert
+        String query1 = "SELECT * from users WHERE ID = ? && Field = 'F'";
+        PreparedStatement preparedStmt = con.prepareStatement(query1);
+        preparedStmt.setString (1,ID);
+        ResultSet resultSet = preparedStmt.executeQuery();
+        if(resultSet.next()) {
+          String Name = resultSet.getString(1);
+          JLabel nm = new JLabel("User Name :");
+          JLabel n = new JLabel(Name);
+          JLabel rn = new JLabel("ID :");
+          JLabel r = new JLabel(ID);
+          nm.setBounds(5,50,100,20);
+          n.setBounds(110,50,100,20);
+          rn.setBounds(5,80,100,20);
+          r.setBounds(110,80,100,20);
+          P.add(nm);
+          P.add(n);
+          P.add(rn);
+          P.add(r);
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Error");
+        
+    }
+    catch(Exception e1){ System.out.println(e1);}
+      P.setLayout(null);
+      P.add(panel3);
+      tab.setBackground(Color.WHITE); 
     }
 }

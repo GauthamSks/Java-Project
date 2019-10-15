@@ -102,11 +102,41 @@ public class Student{
         tab.setBackground(Color.WHITE);
        
         
-        //Attendance Panel
-        
+        //Personal Panel
+        try{
+          // Class.forName("com.mysql.cj.jdbc.Driver");
+          Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/Students","Beta","1234"); //Connecting MySQL to java via JDBC API.
+          Statement stmt=con.createStatement();//Create a statement object to perform a query.
+          
+          // Method to Insert
+          String query1 = "SELECT * from users WHERE ID = ? && Field = 'S'";
+          PreparedStatement preparedStmt = con.prepareStatement(query1);
+          preparedStmt.setString (1,ID);
+          ResultSet resultSet = preparedStmt.executeQuery();
+          if(resultSet.next()) {
+            String Name = resultSet.getString(1);
+            JLabel nm = new JLabel("User Name :");
+            JLabel n = new JLabel(Name);
+            JLabel rn = new JLabel("Roll No :");
+            JLabel r = new JLabel(ID);
+            nm.setBounds(5,50,100,20);
+            n.setBounds(110,50,100,20);
+            rn.setBounds(5,80,100,20);
+            r.setBounds(110,80,100,20);
+            T.add(nm);
+            T.add(n);
+            T.add(rn);
+            T.add(r);
+          }
+          else
+              JOptionPane.showMessageDialog(null, "Error");
+          
+      }
+      catch(Exception e1){ System.out.println(e1);}
         T.setLayout(null);
         T.add(panel3);
-        tab.setBackground(Color.WHITE);    
+        tab.setBackground(Color.WHITE);  
+    
    }
 }
 

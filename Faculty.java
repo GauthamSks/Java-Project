@@ -25,13 +25,11 @@ public class Faculty {
         J.setContentPane(new JLabel(new ImageIcon("FBG.jpg")));
         J.setTitle("Faculty");
         JPanel M = new JPanel(); // Marks Panel
-        JPanel A = new JPanel(); // Attendance Panel
         JPanel P = new JPanel(); // Personal Panel
         UIManager.put("TabbedPane.selected", o1);
         UIManager.put("TabbedPane.contentOpaque", true);
         JTabbedPane tab = new JTabbedPane();
         tab.add("MARKS", M);
-        tab.add("ATTENDANCE", A);
         tab.add("PERSONAL", P);
         tab.setBounds(60, 140, 1000, 500);
         J.add(tab);
@@ -40,6 +38,20 @@ public class Faculty {
 
         ImagePanel panel1 = new ImagePanel(new ImageIcon("FBG5.jpg").getImage());
         ImagePanel panel2 = new ImagePanel(new ImageIcon("FBG5.jpg").getImage());
+
+        // Log Out Button
+        JButton LO = new JButton("Log-Out");
+        LO.setBounds(750,10,130,25);
+        LO.setBackground(o1);
+        J.add(LO);
+        LO.addActionListener(new ActionListener(){
+        
+          @Override
+          public void actionPerformed(ActionEvent e) {
+            J.dispose();
+            Login L = new Login();
+          }
+        });
 
         // Marks Panel Design
 
@@ -77,34 +89,7 @@ public class Faculty {
         M.add(panel1);
         tab.setBackground(Color.WHITE);
 
-        // Attendance Panel
-
-        A.setLayout(null);
-        JComboBox SubD1 = new JComboBox<>(Sub);
-        SubD1.setBounds(10, 50, 100, 20);
-        A.add(SubD1);
-        JLabel SN1 = new JLabel("STUDENT NAME:");
-        SN1.setBounds(10, 100, 150, 10);
-        A.add(SN1);
-        JTextField AIn1 = new JTextField();
-        AIn1.setBounds(10, 118, 250, 20);
-        A.add(AIn1);
-        JLabel B1 = new JLabel("ROLL NO:");
-        B1.setBounds(10, 155, 100, 10);
-        A.add(B1);
-        JTextField BIn1 = new JTextField();
-        BIn1.setBounds(10, 172, 250, 20);
-        A.add(BIn1);
-        JLabel C1 = new JLabel("ATTENDANCE");
-        C1.setBounds(10, 205, 100, 10);
-        A.add(C1);
-        JTextField CIn1 = new JTextField();
-        CIn1.setBounds(10, 222, 250, 20);
-        A.add(CIn1);
-        A.add(panel2);
-        tab.setBackground(Color.WHITE);
-
-        // Personal Panel
+        // Marks update Panel setup
         Up.addActionListener(new ActionListener(){
         
             @Override
@@ -186,5 +171,85 @@ public class Faculty {
               }
             });
 
+    //Personal Panel
+    try{
+        // Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/Students","Beta","1234"); //Connecting MySQL to java via JDBC API.
+        Statement stmt=con.createStatement();//Create a statement object to perform a query.
+        
+        // Method to Insert
+        String query1 = "SELECT * from users WHERE ID = ? && Field = 'F'";
+        PreparedStatement preparedStmt = con.prepareStatement(query1);
+        preparedStmt.setString (1,ID);
+        ResultSet resultSet = preparedStmt.executeQuery();
+        if(resultSet.next()) {
+          String Name = resultSet.getString(1);
+          JLabel nm = new JLabel("User Name :");
+          JLabel n = new JLabel(Name);
+          JLabel rn = new JLabel("ID :");
+          JLabel r = new JLabel(ID);
+          nm.setBounds(5,50,100,20);
+          n.setBounds(110,50,100,20);
+          rn.setBounds(5,80,100,20);
+          r.setBounds(110,80,100,20);
+          P.add(nm);
+          P.add(n);
+          P.add(rn);
+          P.add(r);
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Error");
+
+            JLabel cp = new JLabel("Current Password");
+            cp.setBounds(5,100,150,50);
+            P.add(cp);
+            JPasswordField cpf = new JPasswordField();
+            cpf.setBounds(5,140,150,15);
+            P.add(cpf);
+            JLabel np = new JLabel("New Password");
+            np.setBounds(5,145,150,50);
+            P.add(np);
+            JPasswordField npf = new JPasswordField();
+            npf.setBounds(5,185,154,15);
+            P.add(npf);
+            JButton PU = new JButton("UPDATE");
+            PU.setBackground(o1);
+            PU.setBounds(5,220,130,25);
+            P.add(PU);
+            PU.addActionListener(new ActionListener(){
+            
+              @Override
+              public void actionPerformed(ActionEvent e) {
+                String Cpw = String.valueOf(cpf.getPassword());
+                String New = String.valueOf(npf.getPassword());
+                String q2= "SELECT * from users WHERE ID = ? and Password = ?";
+                try{
+                  Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/Students","Beta","1234"); //Connecting MySQL to java via JDBC API.
+                  Statement stmt=con.createStatement();//Create a statement object to perform a query.
+                  PreparedStatement preparedStmt = con.prepareStatement(q2);
+                  preparedStmt.setString (1,ID);
+                  preparedStmt.setString (2,Cpw);
+                  ResultSet resultSet = preparedStmt.executeQuery();
+                  if(resultSet.next()){
+                    String q3 = "UPDATE users SET Password = ? WHERE ID = ? ";
+                    PreparedStatement preparedStmt1 = con.prepareStatement(q3);
+                    preparedStmt1.setString (1,New);
+                    preparedStmt1.setString (2,ID);
+                    preparedStmt1.executeUpdate();      
+                    JOptionPane.showMessageDialog(null, "Successful Update"); 
+                  }
+                  else
+                    JOptionPane.showMessageDialog(null, "Invalid Current-Password"); 
+                }
+                catch(Exception e1){System.out.println(e1);}
+    
+              }
+            });
+        
+    }
+    catch(Exception e1){ System.out.println(e1);}
+      P.setLayout(null);
+      P.add(panel2);
+      tab.setBackground(Color.WHITE); 
     }
 }

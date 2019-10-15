@@ -106,11 +106,7 @@ public class Student{
         
         T.setLayout(null);
         T.add(panel3);
-        tab.setBackground(Color.WHITE);
-
-        
-    for(int i=0;i<9;i++)
-        System.out.println(a[i]);      
+        tab.setBackground(Color.WHITE);    
    }
 }
 

@@ -145,6 +145,9 @@ public class Student{
           }
           else
               JOptionPane.showMessageDialog(null, "Error");
+          JLabel cp = new JLabel("Current Password");
+          cp.setBounds(5,100,50,50);
+          T.add(cp);
           
       }
       catch(Exception e1){ System.out.println(e1);}

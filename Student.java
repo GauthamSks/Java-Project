@@ -110,7 +110,7 @@ public class Student{
         
             
 
-        // Grade panel
+        // Performance Analyzer panel
 
         G.setLayout(null);
         G.add(panel2);

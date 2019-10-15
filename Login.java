@@ -123,8 +123,8 @@ public class Login{
                   ResultSet resultSet = preparedStmt.executeQuery();
                   if(resultSet.next()) {
                     JOptionPane.showMessageDialog(null, "Successful Login");
+                    J.dispose();
                     Student f = new Student(UID);
-                    J.setVisible(false); 
                   }
                   else
                       JOptionPane.showMessageDialog(null, "Invalid Credentials");
@@ -147,8 +147,8 @@ public class Login{
                     ResultSet resultSet = preparedStmt.executeQuery();
                     if(resultSet.next()) {
                       JOptionPane.showMessageDialog(null, "Successful Login");
+                      J.dispose();
                       Faculty f = new Faculty(UID);
-                      J.setVisible(false); 
                     }
                     else
                         JOptionPane.showMessageDialog(null, "Invalid Credentials");

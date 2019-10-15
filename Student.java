@@ -59,6 +59,21 @@ public class Student{
         ImagePanel panel1 = new ImagePanel(new ImageIcon("FBG5.jpg").getImage());
         ImagePanel panel2 = new ImagePanel(new ImageIcon("FBG5.jpg").getImage());
         ImagePanel panel3 = new ImagePanel(new ImageIcon("FBG5.jpg").getImage());
+
+        // Log Out Button
+        JButton LO = new JButton("Log-Out");
+        LO.setBackground(o1);
+        LO.setBounds(750,10,130,25);
+        J.add(LO);
+        LO.addActionListener(new ActionListener(){
+        
+          @Override
+          public void actionPerformed(ActionEvent e) {
+            J.dispose();
+            Login L = new Login();
+
+          }
+        });
         
 
         //Marks Panel Design

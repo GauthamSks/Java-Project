@@ -200,8 +200,7 @@ public class Faculty {
                 }
               }
             });
-    
-    // Personal panel
+
     //Personal Panel
     try{
         // Class.forName("com.mysql.cj.jdbc.Driver");
@@ -230,6 +229,52 @@ public class Faculty {
         }
         else
             JOptionPane.showMessageDialog(null, "Error");
+
+            JLabel cp = new JLabel("Current Password");
+            cp.setBounds(5,100,150,50);
+            P.add(cp);
+            JPasswordField cpf = new JPasswordField();
+            cpf.setBounds(5,140,150,15);
+            P.add(cpf);
+            JLabel np = new JLabel("New Password");
+            np.setBounds(5,145,150,50);
+            P.add(np);
+            JPasswordField npf = new JPasswordField();
+            npf.setBounds(5,185,154,15);
+            P.add(npf);
+            JButton PU = new JButton("UPDATE");
+            PU.setBackground(o1);
+            PU.setBounds(5,220,130,25);
+            P.add(PU);
+            PU.addActionListener(new ActionListener(){
+            
+              @Override
+              public void actionPerformed(ActionEvent e) {
+                String Cpw = String.valueOf(cpf.getPassword());
+                String New = String.valueOf(npf.getPassword());
+                String q2= "SELECT * from users WHERE ID = ? and Password = ?";
+                try{
+                  Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/Students","Beta","1234"); //Connecting MySQL to java via JDBC API.
+                  Statement stmt=con.createStatement();//Create a statement object to perform a query.
+                  PreparedStatement preparedStmt = con.prepareStatement(q2);
+                  preparedStmt.setString (1,ID);
+                  preparedStmt.setString (2,Cpw);
+                  ResultSet resultSet = preparedStmt.executeQuery();
+                  if(resultSet.next()){
+                    String q3 = "UPDATE users SET Password = ? WHERE ID = ? ";
+                    PreparedStatement preparedStmt1 = con.prepareStatement(q3);
+                    preparedStmt1.setString (1,New);
+                    preparedStmt1.setString (2,ID);
+                    preparedStmt1.executeUpdate();      
+                    JOptionPane.showMessageDialog(null, "Successful Update"); 
+                  }
+                  else
+                    JOptionPane.showMessageDialog(null, "Invalid Current-Password"); 
+                }
+                catch(Exception e1){System.out.println(e1);}
+    
+              }
+            });
         
     }
     catch(Exception e1){ System.out.println(e1);}

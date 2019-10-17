@@ -50,7 +50,7 @@ public class Student{
         J.setLayout(null);
         J.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         J.setLocationRelativeTo(null);
-        J.setContentPane(new JLabel(new ImageIcon("FBG.jpg")));
+        J.setContentPane(new JLabel(new ImageIcon("./Images/FBG.jpg")));
         J.setTitle("Student");
         JPanel M = new JPanel(); //Marks Panel
         JPanel G = new JPanel(); //Grade Panel
@@ -65,9 +65,9 @@ public class Student{
         J.add(tab);
         J.getContentPane().setBackground(o1);
         J.setVisible(true);
-        ImagePanel panel1 = new ImagePanel(new ImageIcon("FBG5.jpg").getImage());
-        ImagePanel panel2 = new ImagePanel(new ImageIcon("FBG5.jpg").getImage());
-        ImagePanel panel3 = new ImagePanel(new ImageIcon("FBG5.jpg").getImage());
+        ImagePanel panel1 = new ImagePanel(new ImageIcon("./Images/FBG5.jpg").getImage());
+        ImagePanel panel2 = new ImagePanel(new ImageIcon("./Images/FBG5.jpg").getImage());
+        ImagePanel panel3 = new ImagePanel(new ImageIcon("./Images/FBG5.jpg").getImage());
 
         // Log Out Button
         JButton LO = new JButton("Log-Out");

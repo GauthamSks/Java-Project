@@ -22,7 +22,7 @@ public class Faculty {
         J.setLayout(null);
         J.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         J.setLocationRelativeTo(null);
-        J.setContentPane(new JLabel(new ImageIcon("FBG.jpg")));
+        J.setContentPane(new JLabel(new ImageIcon("./Images/FBG.jpg")));
         J.setTitle("Faculty");
         JPanel M = new JPanel(); // Marks Panel
         JPanel P = new JPanel(); // Personal Panel
@@ -36,8 +36,8 @@ public class Faculty {
         J.getContentPane().setBackground(o1);
         J.setVisible(true);
 
-        ImagePanel panel1 = new ImagePanel(new ImageIcon("FBG5.jpg").getImage());
-        ImagePanel panel2 = new ImagePanel(new ImageIcon("FBG5.jpg").getImage());
+        ImagePanel panel1 = new ImagePanel(new ImageIcon("./Images/FBG5.jpg").getImage());
+        ImagePanel panel2 = new ImagePanel(new ImageIcon("./Images/FBG5.jpg").getImage());
 
         // Log Out Button
         JButton LO = new JButton("Log-Out");

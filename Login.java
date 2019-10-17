@@ -18,15 +18,15 @@ public class Login{
     public Login(){
 
 
-        ImagePanel panel1 = new ImagePanel(new ImageIcon("img.jpg").getImage());
-        ImagePanel panel2 = new ImagePanel(new ImageIcon("img.jpg").getImage());
+        ImagePanel panel1 = new ImagePanel(new ImageIcon("./Images/img.jpg").getImage());
+        ImagePanel panel2 = new ImagePanel(new ImageIcon("./Images/img.jpg").getImage());
         JFrame J = new JFrame();
         Color o1 = new Color(255, 51, 51);
         J.setSize(390,530);
         J.setLayout(null);
         J.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         J.setLocationRelativeTo(null);
-        J.setContentPane(new JLabel(new ImageIcon("BG.jpg")));
+        J.setContentPane(new JLabel(new ImageIcon("./Images/BG.jpg")));
         J.setTitle("Login");
         JPanel Sin = new JPanel(); //Sign in Panel
         JPanel Sup = new JPanel(); //Sign up Panel

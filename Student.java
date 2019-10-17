@@ -88,16 +88,11 @@ public class Student{
         //Marks Panel Design
         String gS=GradeCal(a[0], a[1], a[2]);
         String[] columns = new String[] {
-            "Id", "Name", "Hourly Rate", "Part Time","Grade"
+            "Course", "P1", "P2", "End_Sem","Grade"
         };
         String Gm = GradeCal(a[0], a[1], a[2]);
         String Gd = GradeCal(a[3], a[4], a[5]);
         String Gj = GradeCal(a[6], a[7], a[8]);
-        JLabel c = new JLabel("Course");
-        JLabel p1 = new JLabel("P1");
-        JLabel p2 = new JLabel("P2");
-        JLabel p3 = new JLabel("End_SEM");
-        JLabel G1 = new JLabel("Grade");
         //actual data for the table in a 2d array
         Object[][] data = new Object[][] {
             {"Maths",a[0],a[1],a[2],Gm},
@@ -106,19 +101,10 @@ public class Student{
         };
         //create table with data
         JTable table = new JTable(data, columns);
-        c.setBounds(195,80,50,10);
-        M.add(c);
-        p1.setBounds(300,80,50,10);
-        M.add(p1);
-        p2.setBounds(400,80,50,10);
-        M.add(p2);
-        p3.setBounds(480,80,80,10);
-        M.add(p3);
-        G1.setBounds(580,80,80,10);
-        M.add(G1);
-        table.setBounds(165,100,500,48);
+        JScrollPane sp = new JScrollPane(table);
+        sp.setBounds(165,100,520,70);
         table.setBackground(Color.WHITE );
-        M.add(table);  
+        M.add(sp);  
         M.add(panel1);
         M.setLayout(null);
         tab.setBackground(Color.WHITE);

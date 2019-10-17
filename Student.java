@@ -139,10 +139,10 @@ public class Student{
             getMaxMarks(q72);
                  
         }
-        catch(Exception e3) {System.out.println(e3);}
+      catch(Exception e3) {System.out.println(e3);}
         
  
-        CategoryDataset dataset = createDataset(); 
+      CategoryDataset dataset = createDataset(); 
 	    //Create chart  
 	    JFreeChart chart=ChartFactory.createBarChart(  
 	        "Histogram", //Chart Title  
@@ -155,9 +155,8 @@ public class Student{
 	    ChartPanel panel=new ChartPanel(chart);
 	    panel.setSize(840,395);
 	    G.add(panel); 
-        G.setLayout(null);
-//        G.add(panel2);
-        tab.setBackground(Color.WHITE);
+      G.setLayout(null);
+      tab.setBackground(Color.WHITE);
         
         
         
@@ -253,7 +252,6 @@ public class Student{
 		   Connection con1=DriverManager.getConnection( "jdbc:mysql://localhost:3306/Students","Beta","1234"); //Connecting MySQL to java via JDBC API.
            Statement stmt2=con1.createStatement();//Create a statement object to perform a query.
            PreparedStatement preparedStmt2 = con1.prepareStatement(q);
-//           preparedStmt2.setString (1,S);
            rt = preparedStmt2.executeQuery();
            if(rt.next()) {
         	   mar[c1]=rt.getInt(1);
